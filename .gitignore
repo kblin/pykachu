@@ -1,1 +1,3 @@
 *.smi
+**/__pycache__/**
+pikachu_chem.egg_info/*
