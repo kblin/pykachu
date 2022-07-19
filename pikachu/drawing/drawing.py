@@ -304,7 +304,7 @@ class KKLayout:
 
 
 class Drawer:
-    def __init__(self, structure, options=None, coords_only=False, multiple=False):
+    def __init__(self, structure, options=None, coords_only=False, multiple=False, title=""):
 
         if options is None:
             self.options = Options()
@@ -329,6 +329,7 @@ class Drawer:
 
         self.ring_id_tracker = 0
         self.ring_overlap_id_tracker = 0
+        self.title = title
 
         self.draw(coords_only=coords_only)
 
@@ -1229,6 +1230,8 @@ class Drawer:
         fig, ax = plt.subplots(figsize=((width + 2 * self.options.padding) / 50.0,
                                         (height + 2 * self.options.padding) / 50.0), dpi=100)
 
+        if self.options.draw_title:
+            fig.suptitle(self.title)
         ax.set_aspect('equal', adjustable='box')
         ax.axis('off')
 
@@ -2803,3 +2806,4 @@ class Options:
         self.draw_hydrogens = False
         self.finetune = True
         self.strict_mode = False
+        self.draw_title = False
