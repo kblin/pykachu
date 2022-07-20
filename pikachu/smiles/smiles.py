@@ -1,4 +1,9 @@
-from typing import *
+from typing import (
+    Any,
+    Dict,
+    Tuple,
+    Union,
+)
 from pikachu.chem.structure import Structure
 from pikachu.errors import (
     ParserError,
