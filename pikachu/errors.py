@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 
-class StructureError(Exception):
+class PikachuError(RuntimeError):
+    pass
+
+
+class StructureError(PikachuError):
     error_to_message = {'chiral double bond': "Conflicting double bond stereochemistry.",
                         'invalid smiles': "Invalid smiles.",
                         'bond': "Incorrect bond placement.",
@@ -15,12 +19,16 @@ class StructureError(Exception):
         self.message = self.error_to_message[error_type]
 
 
-class KekulisationError(Exception):
+class ParserError(PikachuError):
+    pass
+
+
+class KekulisationError(PikachuError):
     def __init__(self, aromatic_system):
         self.message = f"Could not kekulise {aromatic_system}"
 
 
-class DrawingError(Exception):
+class DrawingError(PikachuError):
     error_to_message = {'chiral bond ring': "PIKAChU could not correctly draw the cis/trans stereochemistry of a double bond in a cycle.",
                         'chiral center': "Too few elements attached to chiral center, including hydrogens and lone pairs."}
 
@@ -28,11 +36,12 @@ class DrawingError(Exception):
         self.message = self.error_to_message[error_type]
 
 
-class ColourError(Exception):
+class ColourError(PikachuError):
     def __init__(self, colour):
         if type(colour) == str:
             if colour == 'too few colours':
-                self.message = f"Pikachu has too few colours to work with."
+                self.message = "Pikachu has too few colours to work with."
 
             else:
-                self.message = f"Pikachu is unfamiliar with the colour {colour}. \n\nPikachu is confused. \nIt hurt itself in confusion."
+                self.message = f"Pikachu is unfamiliar with the colour {colour}." \
+                                "\n\nPikachu is confused. \nIt hurt itself in confusion."
