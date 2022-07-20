@@ -1,3 +1,5 @@
 *.smi
 **/__pycache__/**
-pikachu_chem.egg_info/*
+pikachu_chem.egg-info/*
+dist/*
+.idea/*
