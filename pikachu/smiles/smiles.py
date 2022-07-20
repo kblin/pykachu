@@ -1,6 +1,10 @@
 from typing import *
 from pikachu.chem.structure import Structure
-from pikachu.errors import StructureError, ParserError
+from pikachu.errors import (
+    ParserError,
+    PikachuError,
+    StructureError,
+)
 from pikachu.chem.atom import Atom
 # from pikachu.chem.aromatic_system import AromaticSystem
 
@@ -21,7 +25,7 @@ def calc_charge(sign, value):
     elif sign == '-':
         return value * -1
     else:
-        raise Exception("Wrong character to indicate charge!")
+        raise PikachuError("Wrong character to indicate charge!")
 
 
 def parse_explicit(component):
