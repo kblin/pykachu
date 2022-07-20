@@ -1,6 +1,6 @@
 from typing import *
 from pikachu.chem.structure import Structure
-from pikachu.errors import StructureError
+from pikachu.errors import StructureError, ParserError
 from pikachu.chem.atom import Atom
 # from pikachu.chem.aromatic_system import AromaticSystem
 
@@ -12,8 +12,7 @@ def read_smiles(smiles_string):
             structure = smiles.smiles_to_structure()
             return structure
         except StructureError as e:
-            print(f'Error parsing "{smiles_string}": {e.message}')
-            return
+            raise ParserError(f'Error parsing "{smiles_string}": {e.message}')
 
 
 def calc_charge(sign, value):
